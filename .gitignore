@@ -1,0 +1,13 @@
+.DS_Store
+._*
+
+.gradle
+build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# eclipse
+.classpath
+.project
+.settings

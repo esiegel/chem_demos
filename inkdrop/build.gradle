@@ -1,0 +1,10 @@
+apply plugin:'application'
+
+mainClassName = "InkdropMain"
+
+jar.doFirst {
+   manifest {
+      attributes 'Main-Class': mainClassName,
+                 'Class-Path': generateManifestClasspath()
+   }
+}

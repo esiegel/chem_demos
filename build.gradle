@@ -1,0 +1,57 @@
+subprojects {
+
+   repositories {
+       mavenCentral()
+   }
+
+   // java plugin.
+   apply plugin: "java"
+   apply plugin: "eclipse"
+
+   // custom source layout
+   sourceSets {
+       main {
+           java {
+               srcDir 'src'
+           }
+       }
+   }
+
+   // depend on jogl
+   dependencies {
+      compile group: 'org.jogamp.gluegen', name: 'gluegen',      version: '2.2.4'
+      compile group: 'org.jogamp.gluegen', name: 'gluegen-rt',   version: '2.2.4'
+      compile group: 'org.jogamp.jogl',    name: 'jogl-all',     version: '2.2.4'
+      compile group: 'org.swinglabs',      name: 'swing-layout', version: '1.0.3'
+
+      // Download the native libraries for you platform.  Is use OSX here.
+      compile group: 'org.jogamp.gluegen', name: 'gluegen-rt',   version: '2.2.4', classifier: 'natives-macosx-universal'
+      compile group: 'org.jogamp.jogl',    name: 'jogl-all',     version: '2.2.4', classifier: 'natives-macosx-universal'
+   }
+
+   // Task to copy all of the jars.
+   task copyLibs << {
+      def libsDir  = new File('build/libs')
+      libsDir.mkdirs()
+
+      copy {
+         from sourceSets.main.runtimeClasspath
+         into libsDir
+         include '**/*.jar'
+      }
+   }
+
+   // Copy libs before creating the jar.
+   jar.dependsOn(copyLibs)
+
+   // Finds all jars in the libs directory and produces the manifests classpath
+   ext.generateManifestClasspath = { ->
+      def libsDir  = jar.destinationDir
+      def paths = libsDir.listFiles()*.getAbsolutePath()
+
+      // our classpath should only include the dependencies, not itself.
+      paths.removeAll { it.endsWith(jar.archiveName) }
+
+      return paths.join(' ')
+   }
+}
