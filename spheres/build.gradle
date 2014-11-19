@@ -1,0 +1,10 @@
+apply plugin:'application'
+
+mainClassName = "EnergyDiffusionMain"
+
+jar.doFirst {
+   manifest {
+      attributes 'Main-Class': mainClassName,
+                 'Class-Path': generateManifestClasspath()
+   }
+}
