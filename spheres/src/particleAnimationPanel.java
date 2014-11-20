@@ -11,7 +11,7 @@ import com.jogamp.opengl.util.FPSAnimator;
 public class particleAnimationPanel extends JPanel {
 	
 	particleEventListener listener;  //gleventlistener
-	FPSAnimator animator;
+	FPSAnimator animator = null;
 	public GLCanvas renderableCanvas;
 	
 	//static int fps = 60; //frame rate
@@ -27,10 +27,6 @@ public class particleAnimationPanel extends JPanel {
 		renderableCanvas = new GLCanvas(Rendercaps);
 
 		listener = new particleEventListener(numOfParticles, ratio, mass, velocity, dispersed, trace, stats, instCumul, colors);
-
-		//animator = new Animator(renderableCanvas);
-		animator = new FPSAnimator(renderableCanvas, 60, true);
-		//XXX animator.setRunAsFastAsPossible(true);
 		
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(512, 512));
@@ -46,8 +42,32 @@ public class particleAnimationPanel extends JPanel {
 		
 		setVisible(true);
 		validate();   //Allows the frame to be layed out before the animation starts
-		
-		//animator.start();
 	}
+
+   public void startAnimator() {
+      if (animator == null) {
+         animator = new FPSAnimator(renderableCanvas, 60, true);
+      }
+
+      animator.start();
+   }
+
+   public void stopAnimator() {
+      if (animator != null && animator.isAnimating()) {
+         animator.stop();
+      }
+   }
+
+   public void toggleAnimator() {
+      if (animator == null) {
+         animator = new FPSAnimator(renderableCanvas, 60, true);
+      }
+
+      if (animator.isAnimating()) {
+         animator.stop();
+      } else {
+         animator.start();
+      }
+   }
 
 }

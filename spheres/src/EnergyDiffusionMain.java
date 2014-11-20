@@ -249,9 +249,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 	
 	System.out.println(particles + " " + density + " " + vel);
 	
-	if (jPanel1.animator.isAnimating()) {
-		jPanel1.animator.stop();
-	}
+   jPanel1.stopAnimator();
 	
 	getContentPane().remove(jPanel1);
 	this.remove(jTextField1);
@@ -280,14 +278,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton2ActionPerformed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    // TODO add your handling code here:
-	if (jPanel1.animator.isAnimating()) {
-		jPanel1.animator.stop();
-		System.out.println("paused");
-	} else {
-		jPanel1.animator.start();
-		System.out.println("started");
-	}
+   jPanel1.toggleAnimator();
 }//GEN-LAST:event_jButton1ActionPerformed
 
 private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed

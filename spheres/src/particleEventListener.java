@@ -19,6 +19,8 @@ public class particleEventListener implements GLEventListener {
 	private int numOfParticles; //needs to be square to help with the close packing
 	private double sizeRatio; //ratio of space taken up, maximum of .785, or pi/4
 	private ArrayList<Particle> particles;
+
+   private boolean reshapeOccurred = true; // used in the display function to not update state after reshape
 	
 	private int borderDList;  //DisplayList for the border
 	private int particleDList;  //DisplayList for the particle
@@ -159,7 +161,6 @@ public class particleEventListener implements GLEventListener {
 	}
 	
 	public void display (GLAutoDrawable drawable) {
-
 	   GL2 gl = (GL2) drawable.getGL();  
 		
 	    // clear colour and depth buffers
@@ -173,7 +174,14 @@ public class particleEventListener implements GLEventListener {
 	    } else {
 	    	glu.gluLookAt(0 ,0, 230, 0,0,0, 0,1,0);   // position camera
 	    }
-	    
+
+       if (reshapeOccurred) {
+          reshapeOccurred = false;
+	    	 renderParticles(gl);
+			 gl.glCallList(borderDList);
+			 renderStats(gl);
+          return;
+       }
 	    
 	    if(eventQueue.isEmpty()) {
 	    	//System.out.println("no more events");
@@ -322,6 +330,7 @@ public class particleEventListener implements GLEventListener {
 	
 
 	public void reshape (GLAutoDrawable drawable, int x, int y, int width, int height) {
+      reshapeOccurred = true;
 
 	   GL2 gl = (GL2) drawable.getGL();  
 		gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
