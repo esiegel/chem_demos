@@ -8,14 +8,18 @@ buildable once again.
 Sphere Collisions
 =================
 
-<iframe src="http://gfycat.com/ifr/ImpossibleSkeletalGossamerwingedbutterfly" frameborder="0" scrolling="no" width="600" height="400" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
+![Sphere Collisions GIF][spheres_gif]
 
 Inkdrop Dispersion
 ==================
 
-<iframe src="http://gfycat.com/ifr/SarcasticFrailAsianwaterbuffalo" frameborder="0" scrolling="no" width="414" height="488" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
+![Inkdrop Dispersion GIF][inkdrop_gif]
 
 Polymer Stetching (Springs)
 ===========================
 
-<iframe src="http://gfycat.com/ifr/TartAbsoluteAmbushbug" frameborder="0" scrolling="no" width="400" height="388" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
+![Polymer Stretching as Springs GIF][stretch_gif]
+
+[spheres_gif]: http://giant.gfycat.com/ImpossibleSkeletalGossamerwingedbutterfly.gif
+[inkdrop_gif]: http://giant.gfycat.com/SarcasticFrailAsianwaterbuffalo.gif 
+[stretch_gif]: http://fat.gfycat.com/TartAbsoluteAmbushbug.gif 
