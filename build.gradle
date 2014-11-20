@@ -54,4 +54,9 @@ subprojects {
 
       return paths.join(' ')
    }
+
+   // running the code via the jars, since it has the correct jni libs paths.
+   task run(dependsOn:jar) << {
+        ant.java(jar: jar.archivePath, fork:true)
+   }
 }

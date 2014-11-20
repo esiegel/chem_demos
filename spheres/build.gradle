@@ -1,10 +1,6 @@
-apply plugin:'application'
-
-mainClassName = "EnergyDiffusionMain"
-
 jar.doFirst {
    manifest {
-      attributes 'Main-Class': mainClassName,
+      attributes 'Main-Class': "EnergyDiffusionMain",
                  'Class-Path': generateManifestClasspath()
    }
 }

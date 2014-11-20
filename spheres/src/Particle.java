@@ -43,13 +43,6 @@ public class Particle {
 		myPosition.x = myPosition.x + (myVelocityVector.x * timeInterval);
 		myPosition.y = myPosition.y + (myVelocityVector.y * timeInterval);
 		
-		//including acceleration from force
-		//myPosition.x += myVelocityVector.x*timeInterval - .5*(myForce.x/myMass)*timeInterval*timeInterval;
-		//myPosition.y += myVelocityVector.y*timeInterval - .5*(myForce.y/myMass)*timeInterval*timeInterval;
-		
-		//myVelocityVector.x += myForce.x/myMass*timeInterval; 
-		//myVelocityVector.y += myForce.y/myMass*timeInterval; 
-		
 		//mod operation not working correctly, so use if statements
 		if (myPosition.x < -xMod) {
 			myPosition.x += 2*xMod;

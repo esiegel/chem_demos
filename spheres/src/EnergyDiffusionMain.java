@@ -1,30 +1,13 @@
-//import javax.media.opengl.GLAutoDrawable;
-//import javax.media.opengl.GLCanvas;
-//import javax.media.opengl.GLCapabilities;
-//
-//import quicktime.app.display.Drawable;
-//
-//import com.sun.crypto.provider.JceKeyStore;
-//import com.sun.opengl.util.Animator;
-//import com.sun.opengl.util.FPSAnimator;
-
 /*
  * EnergyDiffusionMain.java
  *
  * Created on June 13, 2007, 2:04 PM
  */
-
-
-
-/**
- *
- * @author  Eric
- */
 public class EnergyDiffusionMain extends javax.swing.JFrame {
     
     /** Creates new form energyDiffusionMain */
     public EnergyDiffusionMain() {
-        initComponents(64, .2, 1, 500, false, false, true, false, false);
+        initComponents(1024, .2, 1, 500, false, false, true, false, false);
     }
     
     /** This method is called from within the constructor to
@@ -55,17 +38,6 @@ public class EnergyDiffusionMain extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(512, 512));
-
-//        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-//        jPanel1.setLayout(jPanel1Layout);
-//        jPanel1Layout.setHorizontalGroup(
-//            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-//            .add(0, 596, Short.MAX_VALUE)
-//        );
-//        jPanel1Layout.setVerticalGroup(
-//            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-//            .add(0, 477, Short.MAX_VALUE)
-//        );
 
         jTextField1.setText(Integer.toString(particles));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {

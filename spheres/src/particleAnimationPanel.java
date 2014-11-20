@@ -5,14 +5,12 @@ import javax.media.opengl.awt.GLCanvas;
 import javax.media.opengl.GLCapabilities;
 import javax.swing.JPanel;
 
-//import com.sun.opengl.util.Animator;
 import com.jogamp.opengl.util.FPSAnimator;
 
 
 public class particleAnimationPanel extends JPanel {
 	
 	particleEventListener listener;  //gleventlistener
-	//Animator animator; //animator to keep steady frame rate
 	FPSAnimator animator;
 	public GLCanvas renderableCanvas;
 	

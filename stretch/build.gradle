@@ -1,10 +1,6 @@
-apply plugin:'application'
-
-mainClassName = "StretchingMain"
-
 jar.doFirst {
    manifest {
-      attributes 'Main-Class': mainClassName,
+      attributes 'Main-Class': "StretchingMain",
                  'Class-Path': generateManifestClasspath()
    }
 }
