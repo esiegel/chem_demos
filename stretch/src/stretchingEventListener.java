@@ -32,10 +32,10 @@ public class stretchingEventListener implements GLEventListener {
 	public static double gamma = .01;
 	public static double tau = (gamma*l*l)/(KbT);  //time scale
 	
-	public int xdistance;
-	public int ydistance;
-	public int zdistance; // z distance
-	
+	public int xdistance = 125;
+	public int ydistance = 0;
+   public int zdistance = 400; // z distance
+
 	public static double changeTime = .2; //delta t
 	public double rate;  //velocity;
 	private double simulationTime;
@@ -164,9 +164,11 @@ public class stretchingEventListener implements GLEventListener {
 
 	    gl.glViewport(x, y, width, height);  // size of drawing area 
 
+       System.out.println("ZDistance: " + zdistance);
+
 	    gl.glMatrixMode(GL2.GL_PROJECTION);
 	    gl.glLoadIdentity();
-	    glu.gluPerspective(45.0, (float)width/(float)height, 0, zdistance+1);  //perspective
+	    glu.gluPerspective(45.0, (float)width/(float)height, 1, zdistance+1);  //perspective
 
 	    gl.glMatrixMode(GL2.GL_MODELVIEW);
 	    gl.glLoadIdentity();
@@ -203,28 +205,29 @@ public class stretchingEventListener implements GLEventListener {
 		gl.glEnd();
 	}
 	
-	private void updateParticles() {
-		//particle 0 stays put
-		//particle 1 moves by the set amount each time and then update all the other particles accoourdingly
-		
-		Particle temp = particles.get(numOfParticles-1);  //get leading pulled particle
-		
-		//first move particle1 a bit
-		temp.myPosition.x += (changeTime * rate);  //time change rate * velocity(1)
-		
-		//then for each of the others, excluding the ends, find forces.
-		for (int i= (numOfParticles-2); i > 0; i-- ) {
-			particles.get(i).findForce(particles.get(i-1), particles.get(i+1));
-		}
-		
-		//after finding forces, move them based on the force.
-		for (int i= (numOfParticles-2); i > 0; i-- ) {
-			particles.get(i).moveParticle(changeTime);
-		}
-		
-		//print the work
-		System.out.println(temp.findWork(particles.get(numOfParticles - 2), changeTime, rate));
-	}
+   private void updateParticles() {
+      //particle 0 stays put
+      //particle 1 moves by the set amount each time and then update all the other particles accoourdingly
+
+      //get leading pulled particle
+      Particle temp = particles.get(numOfParticles-1);
+
+      //first move particle1 a bit
+      temp.myPosition.x += (changeTime * rate);  //time change rate * velocity(1)
+
+      //then for each of the others, excluding the ends, find forces.
+      for (int i= (numOfParticles-2); i > 0; i-- ) {
+         particles.get(i).findForce(particles.get(i-1), particles.get(i+1));
+      }
+
+      //after finding forces, move them based on the force.
+      for (int i= (numOfParticles-2); i > 0; i-- ) {
+         particles.get(i).moveParticle(changeTime);
+      }
+
+      //print the work
+      System.out.println("WORK IS: " + temp.findWork(particles.get(numOfParticles - 2), changeTime, rate));
+   }
 	
 	private void drawParticles (GL2 gl) {
 		for (int i=0; i < numOfParticles; i++) {

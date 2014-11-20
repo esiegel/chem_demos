@@ -5,13 +5,6 @@ import com.jogamp.opengl.util.FPSAnimator;
  *
  * Created on July 16, 2007, 11:44 PM
  */
-
-
-
-/**
- *
- * @author  Eric
- */
 public class StretchingMain extends javax.swing.JFrame {
     
     /** Creates new form polymerframe */
@@ -27,7 +20,7 @@ public class StretchingMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-    	jPanel1 = new stretchingAnimationPanel(100, 100);
+    	jPanel1 = new stretchingAnimationPanel(250, 100);
         jTextField1 = new javax.swing.JTextField();
         jTextField1.setText("100");
         jLabel1 = new javax.swing.JLabel();
@@ -140,36 +133,31 @@ private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 
 //reset operation
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    String particles = jTextField1.getText();
-    if (!particles.matches("[0-9]+")) {
-    	//if doesn't match just return
-    	System.out.println("Not a valid particle number");
-    	return;
-    }
-//    if (!jTextField2.getText().matches("[0-1]?[0-9]{0,3}?")) {
-//    	//if text doesn't have 0/1 first digit or nothing, and 0-9 for 0 or 3 digits after return
-//    	System.out.println("Not a valid rate number");
-//    	return;
-//    }
-	if (jPanel1.animator.isAnimating()) {
-    	jPanel1.animator.stop();
-    }
-	//First make the new animator 
-	int fps = 80;  //get correct fps, so no lag
-	jPanel1.animator = new FPSAnimator(jPanel1.renderableCanvas, fps, true);
-	jPanel1.fps = fps;
-	double rate = 10*(Double.parseDouble(jTextField2.getText()));
-	rate /= (double) fps;
-	jPanel1.rate = rate;
-	jPanel1.particles = Integer.parseInt(jTextField1.getText());
-	
-	//change pull rate
-	
-	//Now make the new GlEventListener
-    jPanel1.renderableCanvas.removeGLEventListener(jPanel1.listener);
-    jPanel1.listener = new stretchingEventListener(Integer.parseInt(particles), rate);
-    jPanel1.renderableCanvas.addGLEventListener(jPanel1.listener);
-	System.out.println("reset performed");
+   String particles = jTextField1.getText();
+   if (!particles.matches("[0-9]+")) {
+      System.out.println("Not a valid particle number");
+      return;
+   }
+
+   if (jPanel1.animator.isAnimating()) {
+      jPanel1.animator.stop();
+   }
+
+   //First make the new animator 
+   int fps = 80;  //get correct fps, so no lag
+   jPanel1.fps = 80;
+   double rate = 10*(Double.parseDouble(jTextField2.getText()));
+   rate /= (double) fps;
+   jPanel1.rate = rate;
+   jPanel1.particles = Integer.parseInt(jTextField1.getText());
+
+   //change pull rate
+
+   //Now make the new GlEventListener
+   jPanel1.renderableCanvas.removeGLEventListener(jPanel1.listener);
+   jPanel1.listener = new stretchingEventListener(Integer.parseInt(particles), rate);
+   jPanel1.renderableCanvas.addGLEventListener(jPanel1.listener);
+   System.out.println("reset performed");
 }
 
 //start operation :pause

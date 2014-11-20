@@ -1,4 +1,3 @@
-
 public class dataPoint {
 	
 	double work;
