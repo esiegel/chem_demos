@@ -24,12 +24,17 @@ subprojects {
       compile group: 'org.jogamp.jogl',    name: 'jogl-all',     version: '2.2.4'
       compile group: 'org.swinglabs',      name: 'swing-layout', version: '1.0.3'
 
-      // Download the native libraries for you platform.  Is use OSX here.
+      // Download the native libraries for you platform.  Currently OSX.
       compile group: 'org.jogamp.gluegen', name: 'gluegen-rt',   version: '2.2.4', classifier: 'natives-macosx-universal'
       compile group: 'org.jogamp.jogl',    name: 'jogl-all',     version: '2.2.4', classifier: 'natives-macosx-universal'
    }
 
    // Task to copy all of the jars.
+   //
+   // We need to copy the libraries to a single directory.  The jogl and gluegen
+   // jars attempt to load native JNI libraries, those which are embedded within
+   // the "natives" jars, by searching the same directory.  Sadly Gradle downloads
+   // its dependencies into different directories.
    task copyLibs << {
       def libsDir  = new File('build/libs')
       libsDir.mkdirs()
@@ -41,7 +46,7 @@ subprojects {
       }
    }
 
-   // Copy libs before creating the jar.
+   // Copy libaries before creating the jar.
    jar.dependsOn(copyLibs)
 
    // Finds all jars in the libs directory and produces the manifests classpath
@@ -55,7 +60,8 @@ subprojects {
       return paths.join(' ')
    }
 
-   // running the code via the jars, since it has the correct jni libs paths.
+   // Running the code via the jars, since it has the correct jni libs paths.
+   // Equivalent to running "java -jar PATH_TO_JAR".
    task run(dependsOn:jar) << {
         ant.java(jar: jar.archivePath, fork:true)
    }
