@@ -281,17 +281,6 @@ public class particleEventListener implements GLEventListener {
 	    		//clear particles events
 	    		temp.particleOne.myEvents.clear();
 	    		temp.particleTwo.myEvents.clear();
-	    		//getMyCollisions(temp.particleOne);
-	    		//getMyCollisions(temp.particleTwo);
-	    		
-	    		//for particles that don't have any events
-//	    		Iterator<Particle> particleIter = particles.iterator();
-//	    		while (particleIter.hasNext()) {
-//	    			Particle p = particleIter.next();
-//	    			if (true) {
-//	    				getMyCollisions(p);
-//	    			}
-//	    		}
 
 	    		//find new collisions for those particles that were changed
 	    		Iterator<Particle> particleIterI = needUpdate.iterator();
@@ -499,7 +488,6 @@ public class particleEventListener implements GLEventListener {
 	}
 
 	private void updateParticles(double timeChange) {
-		// TODO Auto-generated method stub
 		Iterator<Particle> particleIter = particles.iterator();
 		while(particleIter.hasNext()) {
 			particleIter.next().updateMe(timeChange, xcoordinant, ycoordinant);
@@ -545,23 +533,12 @@ public class particleEventListener implements GLEventListener {
 		double velX = two.myVelocityVector.x - one.myVelocityVector.x;
 		double velY = two.myVelocityVector.y - one.myVelocityVector.y;
 		
-//		if ((changeX*velX + changeY*velY) >0) {
-//			return null;
-//		}
-		
 		double distanceSquared = (one.myRadius+two.myRadius) * (one.myRadius+two.myRadius);
-		
-		//This is a check, because if this is negative->NaN and we can return null
-//		if ((changeX*velX + changeY*velY)*(changeX*velX + changeY*velY) - 
-//				((velX*velX+velY*velY)*(changeX*changeX +changeY*changeY-distanceSquared)) < 0)  {
-//			return null;
-//		}
 		
 		double top = Math.sqrt((changeX*velX + changeY*velY)*(changeX*velX + changeY*velY) - 
 				((velX*velX+velY*velY)*(changeX*changeX +changeY*changeY-distanceSquared)));
 		
 		double ans1 = (-(changeX*velX+changeY*velY) - top)/(velX*velX+velY*velY);
-		//double ans2 = (-(changeX*velX+changeY*velY) + top)/(velX*velX+velY*velY);
 		
 		if (ans1<0) {
 			return null;
@@ -768,8 +745,6 @@ public class particleEventListener implements GLEventListener {
 
 	@Override
 	public void dispose(GLAutoDrawable drawable) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
