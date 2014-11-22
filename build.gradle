@@ -36,12 +36,9 @@ subprojects {
    // the "natives" jars, by searching the same directory.  Sadly Gradle downloads
    // its dependencies into different directories.
    task copyLibs << {
-      def libsDir  = new File('build/libs')
-      libsDir.mkdirs()
-
       copy {
          from sourceSets.main.runtimeClasspath
-         into libsDir
+         into 'build/libs'
          include '**/*.jar'
       }
    }
