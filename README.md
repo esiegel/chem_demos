@@ -9,6 +9,7 @@ results.
 
 So here they are, my chemistry demos, warts and all.
 
+[***GIFS BELOW***][gifs_url]
 
 Running the Demos
 -----------------
@@ -73,6 +74,7 @@ fast stretching.
 ![Polymer Stretching as Springs GIF][stretch_gif]
 
 
+[gifs_url]: chem_demos#sphere-collisions
 [gradle_url]: http://www.gradle.org/
 [spheres_gif]: http://giant.gfycat.com/ImpossibleSkeletalGossamerwingedbutterfly.gif
 [inkdrop_gif]: http://giant.gfycat.com/SarcasticFrailAsianwaterbuffalo.gif 
