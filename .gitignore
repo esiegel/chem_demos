@@ -12,3 +12,6 @@ gradle-app.setting
 .project
 .settings
 bin
+
+# temporary RC libs for jogl
+libs

@@ -2,8 +2,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import javax.media.opengl.awt.GLCanvas;
-import javax.media.opengl.GLCapabilities;
+import com.jogamp.opengl.awt.GLCanvas;
+import com.jogamp.opengl.GLCapabilities;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 

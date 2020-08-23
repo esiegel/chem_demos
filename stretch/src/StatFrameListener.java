@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
-import javax.media.opengl.GLAutoDrawable;
-import javax.media.opengl.GLEventListener;
+import com.jogamp.opengl.GLAutoDrawable;
+import com.jogamp.opengl.GLEventListener;
 
 
 public class StatFrameListener implements GLEventListener {

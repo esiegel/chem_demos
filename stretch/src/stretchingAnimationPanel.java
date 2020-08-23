@@ -1,8 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.media.opengl.awt.GLCanvas;
-import javax.media.opengl.GLCapabilities;
+import com.jogamp.opengl.awt.GLCanvas;
+import com.jogamp.opengl.GLCapabilities;
 import javax.swing.JPanel;
 
 import com.jogamp.opengl.util.FPSAnimator;

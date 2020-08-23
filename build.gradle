@@ -2,6 +2,10 @@ subprojects {
 
    repositories {
        mavenCentral()
+
+       flatDir {
+         dirs '../libs'
+       }
    }
 
    // java plugin.
@@ -19,14 +23,14 @@ subprojects {
 
    // depend on jogl
    dependencies {
-      compile group: 'org.jogamp.gluegen', name: 'gluegen',      version: '2.2.4'
-      compile group: 'org.jogamp.gluegen', name: 'gluegen-rt',   version: '2.2.4'
-      compile group: 'org.jogamp.jogl',    name: 'jogl-all',     version: '2.2.4'
-      compile group: 'org.swinglabs',      name: 'swing-layout', version: '1.0.3'
+      implementation  name: 'gluegen'
+      implementation  name: 'gluegen-rt'
+      implementation  name: 'jogl-all'
+      implementation  group: 'org.swinglabs', name: 'swing-layout', version: '1.0.3'
 
       // Download the native libraries for you platform.  Currently OSX.
-      compile group: 'org.jogamp.gluegen', name: 'gluegen-rt',   version: '2.2.4', classifier: 'natives-macosx-universal'
-      compile group: 'org.jogamp.jogl',    name: 'jogl-all',     version: '2.2.4', classifier: 'natives-macosx-universal'
+      implementation  name: 'gluegen-rt-natives-macosx-universal'
+      implementation  name: 'jogl-all-natives-macosx-universal'
    }
 
    // Task to copy all of the jars.
@@ -35,12 +39,14 @@ subprojects {
    // jars attempt to load native JNI libraries, those which are embedded within
    // the "natives" jars, by searching the same directory.  Sadly Gradle downloads
    // its dependencies into different directories.
-   task copyLibs << {
-      copy {
-         from sourceSets.main.runtimeClasspath
-         into 'build/libs'
-         include '**/*.jar'
-      }
+   task copyLibs {
+     doLast {
+        copy {
+           from sourceSets.main.runtimeClasspath
+           into 'build/libs'
+           include '**/*.jar'
+        }
+     }
    }
 
    // Copy libaries before creating the jar.
@@ -59,7 +65,9 @@ subprojects {
 
    // Running the code via the jars, since it has the correct jni libs paths.
    // Equivalent to running "java -jar PATH_TO_JAR".
-   task run(dependsOn:jar) << {
+   task run(dependsOn:jar) {
+     doLast {
         ant.java(jar: jar.archivePath, fork:true)
+     }
    }
 }

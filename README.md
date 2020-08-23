@@ -17,13 +17,19 @@ Running the Demos
 [Gradle][gradle_url] is used to manage the code.
 
 ```bash
+# download the open dependencies as they haven't been published yet
+# fixes a bug
+make
+```
+
+```bash
 # display all posible gradle tasks
 gradle tasks --all
 
 # compile, create the jar, and execute
-gradle run:spheres
-gradle run:inkdrop
-gradle run:stretch
+gradle spheres:run
+gradle inkdrop:run
+gradle stretch:run
 ```
 
 Currently, the OpenGL native library dependencies are specified to be OSX.
