@@ -77,11 +77,8 @@ This visualization is intended to show Polymer motion as a spring system.  In th
 is moving to the right at a fixed velocity and the rest of the Polymer is acting accordingly.  It is a bit buggy with
 fast stretching.
 
-![Polymer Stretching as Springs GIF][stretch_gif]
-
 
 [gifs_url]: https://github.com/esiegel/chem_demos#sphere-collisions
 [gradle_url]: http://www.gradle.org/
-[spheres_gif]: http://giant.gfycat.com/ImpossibleSkeletalGossamerwingedbutterfly.gif
-[inkdrop_gif]: http://giant.gfycat.com/SarcasticFrailAsianwaterbuffalo.gif 
-[stretch_gif]: http://fat.gfycat.com/TartAbsoluteAmbushbug.gif 
+[spheres_gif]: ../media/spheres.gif?raw=true
+[inkdrop_gif]: ../media/inkdrop.gif?raw=true
